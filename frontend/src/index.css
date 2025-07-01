@@ -1,0 +1,114 @@
+@import "tailwindcss";
+
+
+
+/* .scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+} */
+
+
+/* .modal {
+  margin: 0;
+  padding: 2rem;
+  position: fixed;
+  top: 10vh;
+  left: calc(50% - 15rem);
+  width: 30rem;
+  max-height: 80vh;
+  background: #e2e5eb;
+  border: none;
+  border-radius: 6px;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  animation: slide-down-fade-in 300ms ease-out forwards;
+}
+
+.modal::backdrop {
+  height: 100vh;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+} */
+
+
+
+/* 
+.modal {
+  margin: 0;
+  padding: 2rem;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(30rem, 90vw);
+  max-width: 90vw;
+  max-height: 80vh;
+  background: #e2e5eb;
+  border: none;
+  border-radius: 6px;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  animation: slide-down-fade-in 300ms ease-out forwards;
+  overflow-y: auto;
+}
+
+.modal::backdrop {
+  height: 100vh;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+/* Mobile-specific adjustments */
+/* @media (max-width: 768px) {
+  .modal {
+    padding: 1.5rem;
+    width: 95vw;
+    max-height: 90vh;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+} */
+
+/* Extra small mobile devices
+@media (max-width: 480px) {
+  .modal {
+    padding: 1rem;
+    width: 98vw;
+    border-radius: 4px;
+  }
+} */
+
+/* Animation keyframes */
+/* @keyframes slide-down-fade-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -60%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+} */
+
+
+/* In your CSS file or <style> */
+.bg-custom-rgba {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
