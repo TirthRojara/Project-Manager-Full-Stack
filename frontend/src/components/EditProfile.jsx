@@ -1,9 +1,11 @@
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux";
 import { useQuery, useMutation } from '@tanstack/react-query';
+import { toast } from 'react-toastify';
 
 import { queryClient, fetchUserProfile, fetchUpdateProfile } from "../utils/http";
 import Modal from "../pages/Model";
+import ModalLast from './UI/ModalLast';
 
 
 
@@ -46,11 +48,12 @@ export default function EditProfile() {
     const { mutate } = useMutation({
         mutationFn: fetchUpdateProfile,
         onSuccess: (data) => {
-           
-            console.log('update profile succecfull')
+            console.log('update profile successfull')
+            toast.success('Profile update successfuly')
         },
         onError: (error, data, context) => {
             console.log('error while update profile onError')
+            toast.error(`Can't update profile please try again`)
             console.log(error)
             queryClient.setQueryData(['profileData'], context.previousEvent);
         },
@@ -133,7 +136,9 @@ export default function EditProfile() {
 
     return (
         <>
-            <Modal open={true}>
+            <ModalLast
+            // open={true} 
+            >
 
                 <div className="bg-white text-gray-800 p-8 rounded-2xl shadow-xl w-full max-w-md">
                     <h2 className="text-3xl font-bold text-center mb-6 text-indigo-600">User Profile</h2>
@@ -211,7 +216,7 @@ export default function EditProfile() {
 
                 </div>
 
-            </Modal>
+            </ModalLast>
         </>
     );
 }

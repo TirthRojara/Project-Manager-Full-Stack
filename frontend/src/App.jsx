@@ -29,12 +29,12 @@ const router = createBrowserRouter([
   { path: '*', element: <Error404Page /> },
   {
     path: '/',
-    element: <RootLayout />,
+    element: <RootLayout />,                            ///////////////////
     // errorElement: <ErrorPage />,
     children: [
-      { index: true, element: <Welcomepage /> },
-      { path: 'login', element: <Loginpage /> },
-      { path: 'signup', element: <SignupPage /> },
+      { index: true, element: <Welcomepage /> },        ///////////////////
+      { path: 'login', element: <Loginpage /> },        /////////////////
+      { path: 'signup', element: <SignupPage /> },      /////////////////
       {
         path: 'dashboard',
         element: <DashboardPage />,
@@ -50,9 +50,9 @@ const router = createBrowserRouter([
               { path: 'edit', element: <EditProfilePage /> }
             ]
           },
-          { path: 'avatar', element: <Avatar />},
+          { path: 'avatar', element: <Avatar /> },
           { path: 'createNewProject', element: <EnterNewProject /> },
-          { path: 'task', element: <MainTasks /> },
+          // { path: 'task', element: <MainTasks /> },
           { path: 'logout', element: <LogOutPop /> },
           { path: 'logoutall', element: <LogOutPopAll /> },
           { path: 'deleteacc', element: <DeleteUserPop /> },

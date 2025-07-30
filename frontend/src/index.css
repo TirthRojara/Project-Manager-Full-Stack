@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+.Toastify__toast-container {
+  z-index: 30000000 !important;
+  position: fixed !important;
+}
 
 
 /* .scrollbar-hide {
@@ -111,4 +115,3 @@
 .bg-custom-rgba {
   background-color: rgba(0, 0, 0, 0.5);
 }
-

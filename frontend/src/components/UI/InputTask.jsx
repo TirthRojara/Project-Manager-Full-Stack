@@ -34,7 +34,10 @@ export default function InputTask() {
                 previousCache[key.join('|')] = previous;
 
                 queryClient.setQueryData(key, [...previous, optimisticTask]);
+
             }
+
+         
 
             return { previousCache, keysToUpdate };
         },

@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 
 import { queryClient, fetchAllProject, fetchUpdateProjectName } from "../../utils/http";
 import { uiActions } from "../../Store/ui-slice";
@@ -63,11 +64,14 @@ export default function EditProject() {
 
             queryClient.setQueryData(['projectAll'], updatedProjects);
 
+            // toast.success('Updated successfully');
+
             return { previousProjects }
         },
 
         onError: (error, context) => {
             console.log('onError while update project name')
+            toast.error('Failed Please try again');
             console.log(error.code)
             console.log(error)
             queryClient.setQueryData(['projectAll'], context.previousProjects);
@@ -83,6 +87,8 @@ export default function EditProject() {
 
         onSuccess: () => {
             console.log('project name updated success')
+            toast.success('Updated successfully');
+
         },
 
         onSettled: () => {

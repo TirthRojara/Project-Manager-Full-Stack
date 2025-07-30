@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { useEffect } from "react";
+import { toast } from "react-toastify";
 
 import { queryClient, fetchAllProject, fetchdeleteTask } from "../../utils/http";
 import { fetchdeleteProject } from "../../utils/http";
@@ -83,11 +84,15 @@ export default function DeleteTP({ title }) {
             // Optimistically remove the project from UI
             queryClient.setQueryData(['projectAll'], previousProjects.filter(p => p._id !== id));
 
+            toast.success('Project deleted successfully');
+
             return { previousProjects };
         },
 
         onError: (error, variables, context) => {
             console.error('Error deleting project:', error);
+            toast.error('Failed to delete project');
+            
             // Rollback optimistic update
             queryClient.setQueryData(['projectAll'], context.previousProjects);
 
@@ -102,6 +107,7 @@ export default function DeleteTP({ title }) {
 
         onSuccess: () => {
             console.log('Project deleted successfully');
+            // toast.success('Project deleted successfully');
         },
 
         onSettled: () => {
@@ -134,10 +140,14 @@ export default function DeleteTP({ title }) {
                 );
             }
 
+            toast.success('Task deleted successfully');
+
             return { previousCache, keysToUpdate };
         },
 
         onError: (_err, _vars, context) => {
+            toast.error('Failed to delete task');
+
             context?.keysToUpdate.forEach((key) => {
                 const joined = key.join('|');
                 queryClient.setQueryData(key, context.previousCache[joined]);
@@ -160,6 +170,7 @@ export default function DeleteTP({ title }) {
 
         onSuccess: () => {
             console.log('Task deleted successfully');
+            // toast.success('Task deleted successfully');
         },
     });
 

@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 
 import { queryClient, fetchUserProfile } from "../utils/http";
 import Modal from "../pages/Model";
+import ModalLast from "./UI/ModalLast";
 import { uiActions } from "../Store/ui-slice";
 
 
@@ -74,7 +75,9 @@ export default function Profile({ onClose }) {
     return (
         <>
 
-            <Modal open={true}>
+            <ModalLast 
+            //</> open={true}
+            >
                 <div className="bg-white text-gray-800 p-8 rounded-2xl shadow-xl w-full max-w-md">
                     <h2 className="text-3xl font-bold text-center mb-6 text-indigo-600">User Profile</h2>
 
@@ -137,7 +140,7 @@ export default function Profile({ onClose }) {
                 </div>
 
 
-            </Modal>
+            </ModalLast>
 
 
         </>

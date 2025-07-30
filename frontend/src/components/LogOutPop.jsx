@@ -1,6 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import { logout } from "../utils/http";
 import { uiActions } from "../Store/ui-slice";
@@ -22,9 +23,11 @@ export default function LogOutPop() {
             localStorage.removeItem('expiration');
             navigate('/login')
             console.log('logout succecfull')
+            toast.success('Logout successful')
         },
         onError: (error) => {
             console.log(error + ' error while logout onError');
+            toast.error('Logout failed, please try again');
 
             if (error.code === 401) {
                 localStorage.removeItem('token');
@@ -37,6 +40,7 @@ export default function LogOutPop() {
             // Optional: handle 500 or others differently
             if (error.code === 500) {
                 console.warn('Server error during logout');
+                toast.error('Server error during logout');
             }
 
             // You can still navigate to login if you want

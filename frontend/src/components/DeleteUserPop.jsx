@@ -1,6 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import { fetchdeleteAccount } from "../utils/http";
 import ModalLast from "./UI/ModalLast";
@@ -20,10 +21,12 @@ export default function DeleteUserPop() {
             localStorage.removeItem('token');
             localStorage.removeItem('expiration');
             navigate('/login')
-            console.log('logout all succecfull')
+            console.log('delete account succecfull')
+            toast.success('Account deleted successfully')
         },
         onError: (error) => {
             console.log(error + ' error while deleting account onError');
+            toast.error('Error while deleting account, please try again');
 
             if (error.code === 401) {
                 localStorage.removeItem('token');
@@ -35,6 +38,7 @@ export default function DeleteUserPop() {
 
             if (error.code === 500) {
                 console.warn('Server error during logout');
+                toast
             }
 
             navigate('/login');

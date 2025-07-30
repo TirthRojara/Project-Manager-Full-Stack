@@ -31,7 +31,7 @@ export default function MainTasks() {
     });
 
     const currentProject = allProjects?.find(p => p._id === projectId);
-    
+
 
 
     const [isCompletedClick, setIsCompletedClick] = useState(false)
@@ -140,7 +140,7 @@ export default function MainTasks() {
                 </div>
 
                 {/* tasks  */}
-                <div className='border-0 h-[66%] md:h-[74%] md:w-[80%] mt-5 overflow-y-scroll [&::-webkit-scrollbar]:hidden   [-ms-overflow-style:none]   [scrollbar-width:none]  md:[scrollbar-width:auto]  md:[-ms-overflow-style:auto]  md:[&::-webkit-scrollbar]:block   md:[&::-webkit-scrollbar]:w-2 md:[&::-webkit-scrollbar-thumb]:bg-gray-400  md:[&::-webkit-scrollbar-thumb]:rounded-full'>
+                <div className='max-h-149 border-0 h-[66%] md:h-[74%] md:w-[80%] mt-5 overflow-y-scroll [&::-webkit-scrollbar]:hidden   [-ms-overflow-style:none]   [scrollbar-width:none]  md:[scrollbar-width:auto]  md:[-ms-overflow-style:auto]  md:[&::-webkit-scrollbar]:block   md:[&::-webkit-scrollbar]:w-2 md:[&::-webkit-scrollbar-thumb]:bg-gray-400  md:[&::-webkit-scrollbar-thumb]:rounded-full'>
                     <ul>
 
                         {/* {tasks.map((task) => (
@@ -150,13 +150,12 @@ export default function MainTasks() {
 
                         ))} */}
 
-                        {isPending && (
-                            <li className='p-4 text-center text-gray-500'>
-                                <p>Loading...</p>
-                            </li>
-                        )}
 
-                        {tasks.length === 0 ? (
+                        {isPending ? (
+                            <li className='p-4 text-center text-gray-500'>
+                                Loading tasks...
+                            </li>
+                        ) : tasks.length === 0 ? (
                             <li className='p-4 text-center text-gray-500'>
                                 {isCompletedClick ? 'No completed tasks' :
                                     isRemainingClick ? 'No remaining tasks' :
@@ -171,11 +170,12 @@ export default function MainTasks() {
                         )}
 
 
+
                     </ul>
                 </div>
             </div>
 
-             <Outlet />
+            <Outlet />
         </>
     )
 }

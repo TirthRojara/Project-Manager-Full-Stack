@@ -4,8 +4,8 @@ import { QueryClient } from '@tanstack/react-query';
 
 export const queryClient = new QueryClient();
 
-// const backendURL = 'http://localhost:3000'
-const backendURL = 'https://vercel-project-manager-backend.onrender.com'
+const backendURL = 'http://localhost:3000'
+// const backendURL = 'https://vercel-project-manager-backend.onrender.com'
 
 
 //------------------------------------------------ USER
@@ -69,8 +69,8 @@ export async function loginFetch(loginData) {
 
 
     if (!response.ok) {
-        const error = new Error('An error occurred while login');
         error.code = response.status;
+        const error = new Error('An error occurred while login' + error.code);
         error.info = await response.json();
         throw error;
 

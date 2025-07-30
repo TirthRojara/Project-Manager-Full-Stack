@@ -73,7 +73,7 @@ export default function Dashboard() {
     // Show Profile Edit Model 
 
     // const showEditProfileModal = useSelector(state => state.ui.showEditProfileModal)
-   
+
 
     // function handleEditProfileClose() {
     //     dispatch(uiActions.toggleEditProfile(false))
@@ -124,6 +124,8 @@ export default function Dashboard() {
         queryFn: ({ signal }) => fetchUserAvatar({ userId, signal }),
         enabled: Boolean(userId),
         staleTime: 1000 * 60 * 60 * 2, // 2 hour
+        retry: false, // Don't retry on 404
+        retryOnMount: false
     });
 
     const profileSrc = (avtIsPending || isAvtErr || avtErr?.code === 404)

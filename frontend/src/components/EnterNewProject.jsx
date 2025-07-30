@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useQuery, useMutation } from '@tanstack/react-query';
+import { toast } from "react-toastify";
 
 import { uiActions } from "../Store/ui-slice";
 import InputSign from "./UI/SignUp-LogIn/InputSign";
@@ -32,11 +33,14 @@ export default function EnterNewProject() {
 
             queryClient.setQueryData(['projectAll'], [...previousProjects, optimisticProject]);
 
+            toast.success('Project created successfully!');
+
             return { previousProjects, tempId };
         },
 
         onError: (error, variables, context) => {
             console.log('error while create new project onErr')
+            toast.error('Please try again.');
             console.log(error.code)
             console.log(error)
             queryClient.setQueryData(['projectAll'], context.previousProjects);
@@ -59,6 +63,7 @@ export default function EnterNewProject() {
             });
 
             console.log('project created success')
+            // toast.success('Project created successfully!');
         },
 
         onSettled: () => {

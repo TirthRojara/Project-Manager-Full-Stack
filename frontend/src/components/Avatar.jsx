@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 import { fetchdeleteAvatar, queryClient, fetchUploadAvatar } from "../utils/http";
 import ModalLast from "./UI/ModalLast";
@@ -60,11 +61,13 @@ export default function Avatar() {
                 queryClient.setQueryData(['userAvatar', userId], context.previousAvatar);
             }
             console.log('on Error delete avatar')
+            toast.error('Failed to remove avatar, Please try again.');
             console.log(error)
         },
 
         onSuccess: () => {
             console.log('Avatar deleted successfully.');
+            toast.success('Avatar remove successfully!');
         },
 
         onSettled: () => {
@@ -95,10 +98,12 @@ export default function Avatar() {
                 queryClient.setQueryData(['userAvatar', userId], context.previousAvatar);
             }
             console.log('Failed to upload avatar');
+            toast.error('Failed Please try again.');
         },
 
         onSuccess: () => {
             console.log('Avatar uploaded successfully!');
+            toast.success('Avatar uploaded successfully!');
         },
 
         onSettled: () => {
@@ -136,6 +141,7 @@ export default function Avatar() {
         const file = fileRef.current?.files[0];
         if (!file) {
             console.log('Please select a file first.');
+            toast.warning('Please select a file first.');
             return;
         }
 
@@ -191,7 +197,7 @@ export default function Avatar() {
                             onClick={() => { navigate('..') }}
                             className=" cursor-pointer flex-1 bg-gray-500 text-white py-2 rounded font-semibold hover:bg-gray-600 transition duration-300"
                         >
-                            Cancel
+                            Close
                         </button>
                     </div>
                 </div>

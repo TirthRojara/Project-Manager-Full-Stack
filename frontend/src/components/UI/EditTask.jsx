@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useQuery, useMutation } from '@tanstack/react-query';
+import { toast } from "react-toastify";
 
 import { queryClient, fetchUpdateTaskName, fetchTasksByProject } from "../../utils/http";
 import { uiActions } from "../../Store/ui-slice";
@@ -61,11 +62,19 @@ export default function EditTask() {
 
                 queryClient.setQueryData(key, updated);
             }
+            // toast.success('Updated successfully');
 
             return { previousCache, keysToUpdate };
         },
 
+        onSuccess: () => {
+            console.log('project name updated success')
+            toast.success('Updated successfully');
+        },
+
         onError: (_err, _vars, context) => {
+            toast.error('Failed Please try again');
+
             context?.keysToUpdate.forEach((key) => {
                 const joined = key.join('|');
                 queryClient.setQueryData(key, context.previousCache[joined]);
@@ -96,9 +105,9 @@ export default function EditTask() {
     // const completedValue = currentTask?.completed
 
     if (!currentTask) return null;
-  
 
-   
+
+
     const completedValue = currentTask?.completed;
 
     //  useEffect(() => {
@@ -148,9 +157,9 @@ export default function EditTask() {
     return (
         <>
             <ModalLast
-                // open={isEditTaskClick}
-                // open={usefor === 'task' ? isEditTaskClick : isEditProjectClick}
-                // onClose={handleEditClose}
+            // open={isEditTaskClick}
+            // open={usefor === 'task' ? isEditTaskClick : isEditProjectClick}
+            // onClose={handleEditClose}
             >
                 <form onSubmit={handleEdit}>
                     <div>
